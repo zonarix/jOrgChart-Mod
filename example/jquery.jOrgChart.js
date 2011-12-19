@@ -128,13 +128,14 @@
 	
     var $table = $("<table cellpadding='0' cellspacing='0' border='0'/>");
     var $tbody = $("<tbody/>");
-
+	
 	// Construct the node container(s)
     var $nodeRow = $("<tr/>").addClass("node-cells");
-    var $nodeCell = $("<td/>").addClass("node-cell").attr("colspan", 2);
+	
+	var $nodeCell = $("<td/>").addClass("node-cell").attr("colspan", 2);
     var $childNodes = $node.children("ul:first").children("li");
 	
-    if($childNodes.length > 1) {
+	if($childNodes.length > 1) {
       $nodeCell.attr("colspan", $childNodes.length * 2);
     }
 	// Draw the node
@@ -166,7 +167,14 @@
     $nodeRow.append($nodeCell);
     $tbody.append($nodeRow);
 
-    if($childNodes.length > 0) {
+	//pruebas para comprimir el árbol
+	if(level == 0){
+		alert("hola")
+		//$(".node-cells").nextAll("tr").addClass('test');
+		$("<tr>").addClass('test');
+	}
+    
+	if($childNodes.length > 0) {
 	  // if it can be expanded then change the cursor
 	  $nodeDiv.css('cursor','n-resize').addClass('expanded');
 	
