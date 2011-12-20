@@ -20,6 +20,13 @@
 			chartElement : '#chart'//,  borra la concatenación de propiedades
 			//dragAndDrop  : true		borra la propiedad drag and drop
 		});
+		
+		for (i=0;i<=5000;i++){ //muestra desde el nivel que se desea hasta 5000
+			$('.test'+i).nextAll("tr").fadeToggle("fast");
+			//$('.test1').nextAll("tr").fadeToggle("fast");
+			//$('.test2').nextAll("tr").fadeToggle("fast");
+			//$('.test3').nextAll("tr").fadeToggle("fast");
+		}
     });
     </script>
   </head>

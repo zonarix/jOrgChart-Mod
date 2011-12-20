@@ -166,12 +166,28 @@
     $nodeCell.append($nodeDiv);
     $nodeRow.append($nodeCell);
     $tbody.append($nodeRow);
+	
+	//Para comprimir el árbol
+	if(level > -1){ //pone el nombre a la clase segun el nivel de profundidad
+		
+		//$nodeRow.append($nodeCell).addClass('test'); //pruebas
+		//$nodeCell.append($nodeDiv).addClass('contracted')//.css('visibility','hidden');  //pruebas
+		//$nodeRow.append($nodeCell).addClass('contracted')//.css('visibility','hidden') //pruebas
+		//$tbody.append($nodeRow).addClass('contracted')//css('visibility','hidden'); //pruebas
+		
+		//$table.append($tbody).addClass('test'); //pruebas
+    	//$appendTo.append($table).addClass('test'); //pruebas
+		//$nodeCell.append($nodeDiv).addClass('test'); //pruebas
 
-	//pruebas para comprimir el árbol
-	if(level == 0){
-		alert("hola")
-		//$(".node-cells").nextAll("tr").addClass('test');
-		$("<tr>").addClass('test');
+		  /*if($nodeRow.append($nodeCell).hasClass('contracted')){ //pruebas
+			$nodeRow.append($nodeCell).css('cursor','n-resize'); //pruebas
+			$nodeRow.append($nodeCell).addClass('expanded'); //pruebas
+		  }else{*/ //pruebas
+			//$nodeRow.append($nodeCell).css('cursor','s-resize'); //pruebas
+			$nodeRow.append($nodeCell).addClass('test'+level);
+			//$nodeRow.append($nodeCell).nextAll("tr").addClass('test'); //pruebas
+		  //} //pruebas
+		//$("<tr>").addClass('test'); //pruebas
 	}
     
 	if($childNodes.length > 0) {
@@ -180,7 +196,7 @@
 	
 	  // recurse until leaves found (-1) or to the level specified
       if(opts.depth == -1 || (level+1 < opts.depth)) { 
-        var $downLineRow = $("<tr/>");
+        var $downLineRow = $("<tr id='"+level+'_'+(level+1)+"'></tr>"); //asugna un nombre al id de la fila segun el nivel
         var $downLineCell = $("<td/>").attr("colspan", $childNodes.length*2);
         $downLineRow.append($downLineCell);
         
@@ -190,7 +206,7 @@
         $tbody.append($downLineRow);
 
         // Draw the horizontal lines
-        var $linesRow = $("<tr/>");
+        var $linesRow = $("<tr id='"+level+'_'+(level+2)+"'></tr>"); //asugna un nombre al id de la fila segun el nivel
         $childNodes.each(function() {
           var $left = $("<td/>").addClass("line left top");
           var $right = $("<td/>").addClass("line right top");
@@ -205,7 +221,7 @@
 					.removeClass("top");
 
         $tbody.append($linesRow);
-        var $childNodesRow = $("<tr/>");
+        var $childNodesRow = $("<tr id='"+level+'_'+(level+3)+"'></tr>"); //asugna un nombre al id de la fila segun el nivel
         $childNodes.each(function() {
            var $td = $("<td class='node-container'/>");
            $td.attr("colspan", 2);
@@ -219,6 +235,8 @@
 
     $table.append($tbody);
     $appendTo.append($table);
+	
   };
+  
 
 })(jQuery);
